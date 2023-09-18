@@ -4,7 +4,7 @@ RUN touch /var/log/error_log
 
 ADD ./php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
-RUN addgroup -g 1000 wp && adduser -G wp -g wp -s /bin/sh -D wp
+RUN addgroup -g 1000 php && adduser -G php -g php -s /bin/sh -D php
 
 RUN mkdir -p /var/www/html
 
