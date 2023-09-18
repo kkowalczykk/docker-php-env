@@ -1,0 +1,49 @@
+version: '1'
+
+networks:
+  php-env:
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./app:/var/www/html:delegated
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - php-env
+
+  mysql:
+    image: mysql:8.1
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: php-app
+      MYSQL_USER: php-app
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - php-env
+
+  php:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    container_name: php
+    volumes:
+      - ./app:/var/www/html:delegated
+    networks:
+      - php
