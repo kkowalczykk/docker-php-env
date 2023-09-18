@@ -21,4 +21,3 @@ RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 #Install composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-COPY app/composer.json composer.json
