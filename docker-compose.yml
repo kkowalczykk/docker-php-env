@@ -13,7 +13,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./app:/var/www/html:delegated
+      - ${APP_DIR}:/var/www/html:delegated
     depends_on:
       - php
       - mysql
@@ -44,6 +44,6 @@ services:
       dockerfile: php.dockerfile
     container_name: php
     volumes:
-      - ./app:/var/www/html:delegated
+      - ${APP_DIR}:/var/www/html:delegated
     networks:
       - php
