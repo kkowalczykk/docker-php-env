@@ -46,4 +46,4 @@ services:
     volumes:
       - ${APP_DIR}:/var/www/html:delegated
     networks:
-      - php
+      - php-env
