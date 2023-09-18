@@ -8,7 +8,7 @@ RUN addgroup -g 1000 wp && adduser -G wp -g wp -s /bin/sh -D wp
 
 RUN mkdir -p /var/www/html
 
-RUN chown wp:wp /var/www/html
+RUN chown php:php /var/www/html
 
 WORKDIR /var/www/html
 
